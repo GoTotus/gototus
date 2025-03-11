@@ -14,8 +14,8 @@ key ([create one here](https://gototus.com/console/apikeys))
             return
         }
         fmt.Println("Any shop nearby:")
-        pois, err := ref.GeoPOI(
-		totus.NewGeoPOIParams().
+       	pois, err := ref.GeoPOI(
+		totus.NewGeoPOISearch().
 			WithGeoHash("69y7pkxfc").
 			WithWhat("shop").
 			WithDistance(1000.0).

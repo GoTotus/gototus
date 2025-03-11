@@ -15,7 +15,7 @@ func main() {
 
 	fmt.Println("Any shop nearby:")
 	pois, err := ref.GeoPOI(
-		totus.NewGeoPOIParams().
+		totus.NewGeoPOISearch().
 			WithGeoHash("69y7pkxfc").
 			WithWhat("shop").
 			WithDistance(1000.0).
@@ -30,7 +30,7 @@ func main() {
 
 	fmt.Println("Any shop nearby, but providing lat/lon instead of geohash:")
 	pois, err = ref.GeoPOI(
-		totus.NewGeoPOIParams().
+		totus.NewGeoPOISearch().
 			WithLat(-34.60362).
 			WithLon(-58.3824).
 			WithWhat("shop").
@@ -46,7 +46,7 @@ func main() {
 
 	fmt.Println("Only bookshops, 2km around:")
 	pois, err = ref.GeoPOI(
-		totus.NewGeoPOIParams().
+		totus.NewGeoPOISearch().
 			WithLat(-34.60362).
 			WithLon(-58.3824).
 			WithWhat("shop").
@@ -62,7 +62,7 @@ func main() {
 
 	fmt.Println("Only bookshops, 2km around, name includes the word 'libro' in any case:")
 	pois, err = ref.GeoPOI(
-		totus.NewGeoPOIParams().
+		totus.NewGeoPOISearch().
 			WithLat(-34.60362).
 			WithLon(-58.3824).
 			WithWhat("shop").

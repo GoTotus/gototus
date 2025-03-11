@@ -10,7 +10,7 @@ func TestReference_GeoPOI(t *testing.T) {
 	assert.NoError(t, err)
 	ref := client.Reference()
 	pois, err := ref.GeoPOI(
-		NewGeoPOIParams().
+		NewGeoPOISearch().
 			WithGeoHash("69y7pkxfc").
 			WithWhat("shop").
 			WithDistance(1000.0).

@@ -10,8 +10,7 @@ type Reference struct {
 	totus *Totus
 }
 
-// GeoPOIParams holds parameters for the GeoPOI method
-type GeoPOIParams struct {
+type GeoPOISearch struct {
 	Lat      *float64
 	Lon      *float64
 	GH       *string
@@ -21,41 +20,41 @@ type GeoPOIParams struct {
 	Limit    *int
 }
 
-func NewGeoPOIParams() GeoPOIParams {
-	return GeoPOIParams{}
+func NewGeoPOISearch() GeoPOISearch {
+	return GeoPOISearch{}
 }
 
-func (g GeoPOIParams) WithLat(lat float64) GeoPOIParams {
+func (g GeoPOISearch) WithLat(lat float64) GeoPOISearch {
 	g.Lat = &lat
 	return g
 }
 
-func (g GeoPOIParams) WithLon(lat float64) GeoPOIParams {
+func (g GeoPOISearch) WithLon(lat float64) GeoPOISearch {
 	g.Lon = &lat
 	return g
 }
 
-func (g GeoPOIParams) WithGeoHash(gh string) GeoPOIParams {
+func (g GeoPOISearch) WithGeoHash(gh string) GeoPOISearch {
 	g.GH = &gh
 	return g
 }
 
-func (g GeoPOIParams) WithWhat(what string) GeoPOIParams {
+func (g GeoPOISearch) WithWhat(what string) GeoPOISearch {
 	g.What = &what
 	return g
 }
 
-func (g GeoPOIParams) WithDistance(distance float64) GeoPOIParams {
+func (g GeoPOISearch) WithDistance(distance float64) GeoPOISearch {
 	g.Distance = &distance
 	return g
 }
 
-func (g GeoPOIParams) WithLimit(limit int) GeoPOIParams {
+func (g GeoPOISearch) WithLimit(limit int) GeoPOISearch {
 	g.Limit = &limit
 	return g
 }
 
-func (g GeoPOIParams) AddFilter(key, value string) GeoPOIParams {
+func (g GeoPOISearch) AddFilter(key, value string) GeoPOISearch {
 	if g.Filter == nil {
 		g.Filter = make(map[string]string)
 	}
@@ -63,8 +62,7 @@ func (g GeoPOIParams) AddFilter(key, value string) GeoPOIParams {
 	return g
 }
 
-// GeoPOI fetches points of interest based on the provided parameters
-func (r *Reference) GeoPOI(params GeoPOIParams) ([]POI, error) {
+func (r *Reference) GeoPOI(params GeoPOISearch) ([]POI, error) {
 	q := url.Values{}
 	if params.Lat != nil {
 		q.Add("lat", fmt.Sprintf("%f", *params.Lat))
