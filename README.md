@@ -14,16 +14,12 @@ key ([create one here](https://gototus.com/console/apikeys))
             return
         }
         fmt.Println("Any shop nearby:")
-        gh := "69y7pkxfc"
-        what := "shop"
-        dist := 1000.0
-        limit := 2
-        pois, err := ref.GeoPOI(totus.GeoPOIParams{
-            GH:       &gh,
-            What:     &what,
-            Distance: &dist,
-            Limit:    &limit,
-        })
+        pois, err := ref.GeoPOI(
+		totus.NewGeoPOIParams().
+			WithGeoHash("69y7pkxfc").
+			WithWhat("shop").
+			WithDistance(1000.0).
+			WithLimit(2))
         if err != nil {
             fmt.Printf("Error: %v\n", err)
             return

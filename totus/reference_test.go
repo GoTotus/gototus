@@ -9,18 +9,12 @@ func TestReference_GeoPOI(t *testing.T) {
 	client, err := NewTotus("", "", "")
 	assert.NoError(t, err)
 	ref := client.Reference()
-
-	gh := "69y7pkxfc"
-	what := "shop"
-	dist := 1000.0
-	limit := 10
-	params := GeoPOIParams{
-		GH:       &gh,
-		What:     &what,
-		Distance: &dist,
-		Limit:    &limit,
-	}
-	pois, err := ref.GeoPOI(params)
+	pois, err := ref.GeoPOI(
+		NewGeoPOIParams().
+			WithGeoHash("69y7pkxfc").
+			WithWhat("shop").
+			WithDistance(1000.0).
+			WithLimit(10))
 	assert.NoError(t, err)
 	assert.Len(t, pois, 10)
 }
@@ -30,11 +24,12 @@ func TestReference_IP(t *testing.T) {
 	assert.NoError(t, err)
 	ref := client.Reference()
 
-	resp, err := ref.IP("8.8.8.8", "")
-	if err != nil {
-		t.Fatalf("IP() error = %v", err)
-	}
-	if resp.IP4() != "8.8.8.8" || resp.GH() != "9q9htvvm81jd" {
-		t.Errorf("IP() = %v, want ip4=8.8.8.8, gh=9q9htvvm81jd", resp)
-	}
+	resp, err := ref.IP4("8.8.8.8")
+	assert.NoError(t, err)
+	assert.Equal(t, "8.8.8.8", resp.IP4())
+	assert.Equal(t, "9q9htvvm81jd", resp.GH())
+
+	resp, err = ref.IP6("2001:4860:4860::8888")
+	assert.NoError(t, err)
+	assert.Equal(t, "2001:4860:4860::8888", resp.IP6())
 }
