@@ -20,7 +20,7 @@ func main() {
 		"info@x.com",
 	}
 	for _, email := range emails {
-		result, err := val.Email(email, totus.CheckLevelL4Dbs)
+		result, err := val.Email(email, totus.CheckLevelL5Smell)
 		if err != nil {
 			fmt.Printf("Error validating %s: %v\n", email, err)
 			continue

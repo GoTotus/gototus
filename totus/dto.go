@@ -57,4 +57,5 @@ const (
 	CheckLevelL2DNS    CheckLevel = "l2_dns"
 	CheckLevelL3Server CheckLevel = "l3_server"
 	CheckLevelL4Dbs    CheckLevel = "l4_dbs"
+	CheckLevelL5Smell  CheckLevel = "l5_smell"
 )
