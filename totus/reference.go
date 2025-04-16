@@ -96,35 +96,35 @@ func (r *Reference) GeoPOI(params GeoPOISearch) ([]POI, error) {
 	return pois, nil
 }
 
-func (r *Reference) IP() (*IPData, error) {
+func (r *Reference) NetIP() (*IPData, error) {
 	var resp IPData
-	err := r.totus.makeRequest("GET", "/ref/ip", nil, nil, &resp)
+	err := r.totus.makeRequest("GET", "/ref/net/ip", nil, nil, &resp)
 	if err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
-// IP fetches IP information for the given IPv4 or IPv6 address
-func (r *Reference) IP4(ip4 string) (*IPData, error) {
+// NetIP fetches NetIP information for the given IPv4 or IPv6 address
+func (r *Reference) NetIP4(ip4 string) (*IPData, error) {
 	q := url.Values{}
 	q.Add("ip4", ip4)
 
 	var resp IPData
-	err := r.totus.makeRequest("GET", "/ref/ip", q, nil, &resp)
+	err := r.totus.makeRequest("GET", "/ref/net/ip", q, nil, &resp)
 	if err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
-// IP fetches IP information for the given IPv4 or IPv6 address
-func (r *Reference) IP6(ip6 string) (*IPData, error) {
+// NetIP fetches NetIP information for the given IPv4 or IPv6 address
+func (r *Reference) NetIP6(ip6 string) (*IPData, error) {
 	q := url.Values{}
 	q.Add("ip6", ip6)
 
 	var resp IPData
-	err := r.totus.makeRequest("GET", "/ref/ip", q, nil, &resp)
+	err := r.totus.makeRequest("GET", "/ref/net/ip", q, nil, &resp)
 	if err != nil {
 		return nil, err
 	}
