@@ -104,6 +104,26 @@ func (t *Totus) Validate() *Validate {
 	return &Validate{t}
 }
 
+// Utility returns a Utility service instance
+func (t *Totus) Utility() *Utility {
+	return &Utility{t}
+}
+
+// Balance fetches the current account credit balance
+func (t *Totus) Balance() (*Balance, error) {
+	var resp Balance
+	err := t.makeRequest("GET", "/balance", nil, nil, &resp)
+	if err != nil {
+		return nil, err
+	}
+	return &resp, nil
+}
+
+// Authenticated checks if the API key is valid and working
+func (t *Totus) Authenticated() (*Authenticated, error) {
+	return t.Utility().Authenticated()
+}
+
 func MapStrWithDef(m map[string]any, key string, def string) string {
 	if v, ok := m[key]; ok {
 		return fmt.Sprintf("%v", v)

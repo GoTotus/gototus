@@ -27,6 +27,22 @@ key ([create one here](https://gototus.com/console/apikeys))
         for _, p := range pois {
             fmt.Println(p)
         }
+
+        // Verify authentication & API key status (free of charge)
+        auth, err := t.Authenticated()
+        if err != nil {
+            fmt.Printf("Error: %v\n", err)
+            return
+        }
+        fmt.Printf("Authenticated: %v (Token: %s)\n", auth.Authenticated, auth.TokenSM)
+
+        // Check account credit balance (free of charge)
+        bal, err := t.Balance()
+        if err != nil {
+            fmt.Printf("Error: %v\n", err)
+            return
+        }
+        fmt.Printf("Account Balance: %.2f Credits\n", bal.Credits)
     }
 
 ```

@@ -59,3 +59,23 @@ const (
 	CheckLevelL4Dbs    CheckLevel = "l4_dbs"
 	CheckLevelL5Smell  CheckLevel = "l5_smell"
 )
+
+type Balance struct {
+	Credits float64 `json:"credits"`
+}
+
+func (b Balance) String() string {
+	data, _ := json.MarshalIndent(b, "", "    ")
+	return string(data)
+}
+
+type Authenticated struct {
+	Authenticated bool   `json:"authenticated"`
+	Description   string `json:"description"`
+	TokenSM       string `json:"token_sm"`
+}
+
+func (a Authenticated) String() string {
+	data, _ := json.MarshalIndent(a, "", "    ")
+	return string(data)
+}
